@@ -17,6 +17,5 @@ spec:
           image: amitreddy/kubernetes-demo-users:latest
           env:
             - name: AUTH_ADDRESS
-              value: localhost # as containers are now in same pod we can connect them via localhost
-        - name: auth
-          image: amitreddy/kubernetes-demo-auth:latest
+              # value: "10.103.152.86" #this IP is available on auth-service after running "kubectl get services" after deploying "kubectl apply -f=auth-service.yml -f=auth-deployment.yml"
+              value: "auth-service.default" #servicename.namespacename (if we don't define namespace it is "default")
