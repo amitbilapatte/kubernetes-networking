@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+spec:
+  selector:
+    app: auth
+  type: ClusterIP # as we don't want to expose this port we can use ClusterIP
+  ports:
+    - protocol: TCP
+      port: 80 #we can write different ports in "port" and"TargetPort" but it is recommended to use same port number
+      targetPort: 80
