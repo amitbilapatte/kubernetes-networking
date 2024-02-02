@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: users-service
+spec:
+  selector:
+    app: users
+  type: LoadBalancer # ClusterIP is set by default if we don't mention "type" other types are "NodePort" and "LoadBalancer"
+  ports:
+    - protocol: TCP
+      port: 8080 #we can write different ports in "port" and"TargetPort" but it is recommended to use same port number
+      targetPort: 8080
