@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tasks-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tasks
+  template:
+    metadata:
+      labels:
+        app: tasks
+    spec:
+      containers:
+        - name: tasks
+          image: amitreddy/kubernetes-demo-tasks:latest
+          env:
+            - name: AUTH_ADDRESS
+              # value: "10.103.152.86" #this IP is available on auth-service after running "kubectl get services" after deploying "kubectl apply -f=auth-service.yml -f=auth-deployment.yml"
+              value: "auth-service.default" #servicename.namespacename (if we don't define namespace it is "default")
+            - name: TASKS_FOLDER
+              value: tasks
